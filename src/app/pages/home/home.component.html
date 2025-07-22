@@ -5,18 +5,21 @@
 
   <!-- ? ===================== Slider ===================== -->
 
-  <div>
+  <section class="w-[90%] mx-auto">
+    @if (myCategories.length > 0) {
     <owl-carousel-o [options]="customOptions">
-
       @for (cat of myCategories; track cat._id) {
-      <ng-template carouselSlide>
-        <img [src]="cat.image" class="w-full h-[250px]" alt="cat img">
-        <h3>{{cat.name}}</h3>
+      <ng-template carouselSlide [id]="cat._id">
+        <img [src]="cat.image" class="w-full h-[250px] object-cover" alt="cat image" />
+        <h3 class="text-center">{{ cat.name }}</h3>
       </ng-template>
       }
-
     </owl-carousel-o>
-  </div>
+    } @else {
+    <p class="text-center text-gray-500">Loading categories...</p>
+    }
+  </section>
+
 
 </section>
 

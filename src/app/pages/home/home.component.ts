@@ -3,17 +3,15 @@ import { ICategory } from '../../shared/interfaces/icategory';
 import { IProduct } from '../../shared/interfaces/iproduct';
 import { ProductsService } from './../../core/services/product/products.service';
 import { Component, inject, OnInit } from '@angular/core';
-import { CarouselModule,  OwlOptions  } from 'ngx-owl-carousel-o';
+import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
   selector: 'app-home',
-  imports: [CarouselModule ],
+  imports: [CarouselModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 export class HomeComponent implements OnInit{
-
-  /* =================== Products & Categories ================= */
 
   myProducts : IProduct[] = [];
   myCategories : ICategory[] = [];
@@ -23,12 +21,12 @@ export class HomeComponent implements OnInit{
 
     customOptions: OwlOptions = {
     loop: true,
-    mouseDrag: false,
-    touchDrag: false,
+    mouseDrag: true,
+    touchDrag: true,
     pullDrag: false,
     dots: false,
     navSpeed: 700,
-    navText: ['', ''],
+    navText: ['', ''], // previous and next
     responsive: {
       0: {
         items: 1
@@ -40,7 +38,7 @@ export class HomeComponent implements OnInit{
         items: 3
       },
       940: {
-        items: 4
+        items: 7
       }
     },
     nav: true
@@ -62,13 +60,17 @@ export class HomeComponent implements OnInit{
     this.categoriesService.getCategories().subscribe({
       next: (res)=> {
         console.log(res.data);
-        // this.myProducts = res.data
+        this.myCategories = res.data
       },
       error: (err)=>{
         console.log(err);
       }
     })
   }
+
+  trackById(index: number, item: ICategory) {
+  return item._id;
+}
 
   ngOnInit(): void {
     this.callProducts()
