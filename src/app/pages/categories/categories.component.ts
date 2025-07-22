@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-categories',
@@ -7,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrl: './categories.component.css'
 })
 export class CategoriesComponent {
+
 
 }
