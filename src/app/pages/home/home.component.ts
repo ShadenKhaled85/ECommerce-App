@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit{
 
   myProducts : IProduct[] = [];
   myCategories : ICategory[] = [];
+  showCarousel = false;
 
   private readonly productsService = inject(ProductsService)
   private readonly categoriesService = inject(CategoriesService)
@@ -61,21 +62,19 @@ export class HomeComponent implements OnInit{
       next: (res)=> {
         console.log(res.data);
         this.myCategories = res.data
-      },
+      // Force micro delay to allow DOM to update
+          setTimeout(() => {
+            this.showCarousel = true;
+          }, 0);      },
       error: (err)=>{
         console.log(err);
       }
     })
   }
 
-  trackById(index: number, item: ICategory) {
-  return item._id;
-}
-
   ngOnInit(): void {
-    this.callProducts()
-    this.callCategories()
+      this.callProducts();
+      this.callCategories();
   }
-
 
 }

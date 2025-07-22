@@ -6,7 +6,7 @@
   <!-- ? ===================== Slider ===================== -->
 
   <section class="w-[90%] mx-auto">
-    @if (myCategories.length > 0) {
+    @if (showCarousel) {
     <owl-carousel-o [options]="customOptions">
       @for (cat of myCategories; track cat._id) {
       <ng-template carouselSlide [id]="cat._id">
