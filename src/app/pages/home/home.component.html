@@ -1,3 +1,27 @@
+<!-- ? ========================================== Categories ========================================== -->
+
+<section>
+  <h2 class="text-2xl font-semibold text-gray-800 mb-6">Popular Categories</h2>
+
+  <!-- ? ===================== Slider ===================== -->
+
+  <div>
+    <owl-carousel-o [options]="customOptions">
+
+      @for (cat of myCategories; track cat._id) {
+      <ng-template carouselSlide>
+        <img [src]="cat.image" class="w-full h-[250px]" alt="cat img">
+        <h3>{{cat.name}}</h3>
+      </ng-template>
+      }
+
+    </owl-carousel-o>
+  </div>
+
+</section>
+
+<!-- ? ========================================== Products ========================================== -->
+
 <section>
   <div class="home-content">
     <h2 class="text-2xl font-semibold text-gray-800 mb-6">Popular Products</h2>
