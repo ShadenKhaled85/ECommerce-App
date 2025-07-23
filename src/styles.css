@@ -6,6 +6,3 @@
 @plugin "flowbite/plugin";
 @source "../node_modules/flowbite";
 
-
-@use 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel.scss';
-@use 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default.scss';

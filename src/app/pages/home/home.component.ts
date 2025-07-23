@@ -15,7 +15,6 @@ export class HomeComponent implements OnInit{
 
   myProducts : IProduct[] = [];
   myCategories : ICategory[] = [];
-  showCarousel = false;
 
   private readonly productsService = inject(ProductsService)
   private readonly categoriesService = inject(CategoriesService)
@@ -25,6 +24,9 @@ export class HomeComponent implements OnInit{
     mouseDrag: true,
     touchDrag: true,
     pullDrag: false,
+    autoplay: true,
+    autoplayTimeout: 3000, // 3 secs
+    autoplayHoverPause: true,
     dots: false,
     navSpeed: 700,
     navText: ['', ''], // previous and next
@@ -39,9 +41,24 @@ export class HomeComponent implements OnInit{
         items: 3
       },
       940: {
-        items: 7
+        items: 6
       }
     },
+    nav: true
+  }
+
+  mainSliderOptions: OwlOptions = {
+    loop: true,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: false,
+    autoplay: true,
+    autoplayHoverPause: true,
+    autoplayTimeout: 2000,
+    dots: false,
+    navSpeed: 700,
+    navText: ['', ''], // previous and next
+    items: 1,
     nav: true
   }
 
@@ -62,10 +79,7 @@ export class HomeComponent implements OnInit{
       next: (res)=> {
         console.log(res.data);
         this.myCategories = res.data
-      // Force micro delay to allow DOM to update
-          setTimeout(() => {
-            this.showCarousel = true;
-          }, 0);      },
+      },
       error: (err)=>{
         console.log(err);
       }

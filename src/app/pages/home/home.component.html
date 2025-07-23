@@ -1,25 +1,63 @@
 <!-- ? ========================================== Categories ========================================== -->
 
+<!-- ? ===================== Main Slider ===================== -->
+
+<section class="grid md:grid-cols-[70%_minmax(0,1fr)] gap-6 w-[90%] mx-auto my-8">
+  <div class="rounded-xl overflow-hidden shadow">
+    <owl-carousel-o [options]="mainSliderOptions">
+      <ng-template carouselSlide>
+        <img src="/images/slider-1.png" class="w-full h-[300px] object-cover rounded-xl" alt="Slider 1">
+      </ng-template>
+      <ng-template carouselSlide>
+        <img src="/images/slider-5.jpeg" class="w-full h-[300px] object-cover rounded-xl" alt="Slider 2">
+      </ng-template>
+      <ng-template carouselSlide>
+        <img src="/images/slider-3.jpeg" class="w-full h-[300px] object-cover rounded-xl" alt="Slider 3">
+      </ng-template>
+    </owl-carousel-o>
+  </div>
+
+  <!-- ? Side Info Cards -->
+  <div class="hidden md:flex flex-col gap-4">
+    <!-- ? Card 1 -->
+    <div class="bg-white border border-gray-200 text-gray-800 p-6 rounded-2xl shadow hover:shadow-md transition">
+      <h3 class="text-2xl font-bold mb-2 text-green-600">Big Summer Sale</h3>
+      <p class="mb-4 text-sm text-gray-600">Get up to 50% off selected categories.</p>
+      <button class="bg-green-500 text-white font-semibold px-4 py-2 rounded-full hover:bg-green-600 transition">
+        Shop Now
+      </button>
+    </div>
+
+    <!-- ? Card 2 -->
+    <div class="bg-white border border-gray-200 text-gray-800 p-6 rounded-2xl shadow hover:shadow-md transition">
+      <h3 class="text-2xl font-bold mb-2 text-green-600">New Arrivals</h3>
+      <p class="mb-4 text-sm text-gray-600">Check out the latest products in store.</p>
+      <button class="bg-green-500 text-white font-semibold px-4 py-2 rounded-full hover:bg-green-600 transition">
+        Explore
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ? ===================== Popular Categories Slider ===================== -->
+
 <section>
   <h2 class="text-2xl font-semibold text-gray-800 mb-6">Popular Categories</h2>
 
-  <!-- ? ===================== Slider ===================== -->
-
-  <section class="w-[90%] mx-auto">
-    @if (showCarousel) {
+  <div class="w-[90%] mx-auto">
     <owl-carousel-o [options]="customOptions">
       @for (cat of myCategories; track cat._id) {
       <ng-template carouselSlide [id]="cat._id">
-        <img [src]="cat.image" class="w-full h-[250px] object-cover" alt="cat image" />
-        <h3 class="text-center">{{ cat.name }}</h3>
+        <div class="bg-white rounded-xl shadow hover:shadow-lg transition duration-300 overflow-hidden mx-2">
+          <img [src]="cat.image" class="w-full h-[150px] object-contain" alt="{{ cat.name }}" />
+          <div class="p-4">
+            <h3 class="text-lg font-semibold text-center text-gray-700">{{ cat.name }}</h3>
+          </div>
+        </div>
       </ng-template>
       }
     </owl-carousel-o>
-    } @else {
-    <p class="text-center text-gray-500">Loading categories...</p>
-    }
-  </section>
-
+  </div>
 
 </section>
 
