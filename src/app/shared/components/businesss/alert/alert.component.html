@@ -10,7 +10,7 @@
     <span class="font-medium">Ensure that these requirements are met:</span>
     <ul class="mt-1.5 list-disc list-inside">
       @if(control?.getError('required')){
-      <li>{{field}} is required</li>
+      <li>{{ field }} is required</li>
       }
       @if (control?.getError('minlength')) {
       <li>{{ field }} must have at least {{ control?.getError('minlength').requiredLength }} characters</li>
