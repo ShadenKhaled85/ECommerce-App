@@ -13,6 +13,10 @@ export class RegisterComponent {
 
   private readonly authService = inject(AuthService)
 
+  isLoading : boolean = false;
+
+  errorMsg : string = '';
+
   registerForm : FormGroup = new FormGroup({
     name: new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(20)]),
     email: new FormControl(null, [Validators.required, Validators.email]),
@@ -36,18 +40,25 @@ export class RegisterComponent {
   }
 
   submitForm(){
-    console.log(this.registerForm);
-    console.log(this.registerForm.value);
-    this.authService.signUp(this.registerForm.value).subscribe({
-      next:(res)=>{
-        console.log(res);
-        // Navigate to Login page
+    this.isLoading = true;
+    if(this.registerForm.valid){
+      console.log(this.registerForm);
+      console.log(this.registerForm.value);
+      this.authService.signUp(this.registerForm.value).subscribe({
+        next:(res)=>{
+          this.isLoading = false;
+          this.errorMsg = '';
+          console.log(res);
+          // Navigate to Login page
 
-      },
-      error:(err)=>{
-        console.log(err);
-        // Display error
-      }
-    })
+        },
+        error:(err)=>{
+          this.isLoading = false;
+          // Display error
+          console.log(err.error.message);
+          this.errorMsg = err.error.message;
+        }
+      })
+    }
   }
 }

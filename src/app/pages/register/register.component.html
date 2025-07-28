@@ -91,10 +91,18 @@
     </div>
 
     <!--? ================= Submit Button ================= -->
-    <button type="submit" [disabled]="registerForm.invalid"
+    @if (errorMsg) {
+    <p class="text-center p-4 mb-4 mt-4 text-sm text-red-800 rounded-lg bg-red-100">{{errorMsg}}</p>
+    }
+
+    <!-- ? [disabled]="registerForm.invalid"  -->
+    <button type="submit" [disabled]="isLoading"
       class="w-full bg-green-600 text-white py-2 rounded-lg font-semibold
             hover:bg-green-700 focus:ring-2 focus:ring-green-400 focus:ring-offset-1 transition disabled:bg-gray-400 disabled:cursor-default">
       Register
+      @if (isLoading) {
+      <i class="fa-solid fa-spinner fa-spin-pulse fa-spin-reverse"></i>
+      }
     </button>
   </form>
 </section>
