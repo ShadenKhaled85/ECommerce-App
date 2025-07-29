@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import {AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms'
 import { AlertComponent } from "../../shared/components/businesss/alert/alert.component";
 import { AuthService } from '../../core/services/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -12,10 +13,13 @@ import { AuthService } from '../../core/services/auth/auth.service';
 export class RegisterComponent {
 
   private readonly authService = inject(AuthService)
+  private readonly router = inject(Router)
 
   isLoading : boolean = false;
 
   errorMsg : string = '';
+
+  successMsg: string = '';
 
   registerForm : FormGroup = new FormGroup({
     name: new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(20)]),
@@ -40,8 +44,8 @@ export class RegisterComponent {
   }
 
   submitForm(){
-    this.isLoading = true;
     if(this.registerForm.valid){
+      this.isLoading = true;
       console.log(this.registerForm);
       console.log(this.registerForm.value);
       this.authService.signUp(this.registerForm.value).subscribe({
@@ -49,9 +53,13 @@ export class RegisterComponent {
           this.isLoading = false;
           this.errorMsg = '';
           console.log(res);
+          this.successMsg = res.message
           // Navigate to Login page
-
+          setTimeout(() => {
+            this.router.navigate(['/login'])
+          }, 1000);
         },
+
         error:(err)=>{
           this.isLoading = false;
           // Display error
@@ -59,6 +67,10 @@ export class RegisterComponent {
           this.errorMsg = err.error.message;
         }
       })
+    }
+
+    else{
+      this.isLoading = false;
     }
   }
 }
