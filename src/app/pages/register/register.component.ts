@@ -70,7 +70,7 @@ export class RegisterComponent {
     }
 
     else{
-      this.isLoading = false;
+      this.registerForm.markAllAsTouched()
     }
   }
 }

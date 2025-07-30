@@ -34,7 +34,7 @@
         </div>
       </div>
       } -->
-      <app-alert [control]="registerForm.get('name')" field="Name"></app-alert>
+      <app-alert formType="register" [control]="registerForm.get('name')" field="Name"></app-alert>
     </div>
 
     <!--? ================= Email ================= -->
@@ -42,7 +42,7 @@
       <label for="userEmail" class="block mb-1 text-sm font-medium text-gray-700">Email</label>
       <input formControlName="email" type="email" id="userEmail" class="w-full px-4 py-2 border border-gray-300 rounded-lg text-gray-900 text-sm
               focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-green-600 transition">
-      <app-alert [control]="registerForm.get('email')" field="Email"></app-alert>
+      <app-alert formType="register" [control]="registerForm.get('email')" field="Email"></app-alert>
     </div>
 
     <!--? ================= Password ================= -->
@@ -51,7 +51,7 @@
       <input formControlName="password" type="password" id="userPassword" class="w-full px-4 py-2 border border-gray-300 rounded-lg text-gray-900 text-sm
               focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-green-600 transition">
       <!-- ? Password Alert Message -->
-      <app-alert [control]="registerForm.get('password')" field="Password"></app-alert>
+      <app-alert formType="register" [control]="registerForm.get('password')" field="Password"></app-alert>
     </div>
 
     <!--? ================= Confirm Password ================= -->
@@ -87,7 +87,7 @@
       <input formControlName="phone" type="tel" id="userPhone" class="w-full px-4 py-2 border border-gray-300 rounded-lg text-gray-900 text-sm
               focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-green-600 transition">
       <!-- ? Phone Alert Message -->
-      <app-alert [control]="registerForm.get('phone')" field="Phone"></app-alert>
+      <app-alert formType="register" [control]="registerForm.get('phone')" field="Phone"></app-alert>
     </div>
 
     <!--? ================= Submit Button ================= -->

@@ -12,6 +12,22 @@
       @if(control?.getError('required')){
       <li>{{ field }} is required</li>
       }
+
+      @if (control?.getError('email')) {
+      <li>Enter a valid {{ field }}</li>
+      }
+
+      @if (formType === 'login') {
+      @if (control?.getError('pattern') && field.toLowerCase() === 'password') {
+      <li>Enter a valid {{ field }}</li>
+
+      }
+      @if (control?.getError('pattern') && field.toLowerCase() !== 'password') {
+      <li>Enter a valid {{ field }}</li>
+      }
+      }
+
+      @if (formType === 'register') {
       @if (control?.getError('minlength')) {
       <li>{{ field }} must have at least {{ control?.getError('minlength').requiredLength }} characters</li>
       }
@@ -19,15 +35,13 @@
       <li>{{ field }} exceeded maximum length (Up to {{ control?.getError('maxlength').requiredLength }} characters)
       </li>
       }
-      @if (control?.getError('email')) {
-      <li>Enter a valid {{ field }}</li>
-      }
       @if (control?.getError('pattern') && field.toLowerCase() === 'password') {
       <li>Password must start with an uppercase letter</li>
       <li>Password must have at least 6 lowercase letters or digits after the first letter</li>
       }
       @if (control?.getError('pattern') && field.toLowerCase() !== 'password') {
       <li>{{ field }} format is invalid</li>
+      }
       }
     </ul>
   </div>

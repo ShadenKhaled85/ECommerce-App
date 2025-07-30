@@ -10,4 +10,5 @@ import { AbstractControl } from '@angular/forms';
 export class AlertComponent {
   @Input() control!: AbstractControl | null;
   @Input() field: string = ''; // field (Name, Email, Password, Phone)
+  @Input() formType: 'login' | 'register' = 'register';
 }
