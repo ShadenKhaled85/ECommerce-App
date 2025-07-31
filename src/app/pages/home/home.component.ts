@@ -1,3 +1,4 @@
+import { CartService } from './../../core/services/cart/cart.service';
 import { RouterLink } from '@angular/router';
 import { CategoriesService } from '../../core/services/category/categories.service';
 import { ICategory } from '../../shared/interfaces/icategory';
@@ -24,8 +25,9 @@ export class HomeComponent implements OnInit{
 
   private readonly productsService = inject(ProductsService)
   private readonly categoriesService = inject(CategoriesService)
+  private readonly cartService = inject(CartService)
 
-    customOptions: OwlOptions = {
+  customOptions: OwlOptions = {
     loop: true,
     mouseDrag: true,
     touchDrag: true,
@@ -68,6 +70,11 @@ export class HomeComponent implements OnInit{
     nav: true
   }
 
+  ngOnInit(): void {
+    this.callProducts();
+    this.callCategories();
+  }
+
   callProducts(){
     this.productsService.getProducts().subscribe({
       next: (res)=> {
@@ -92,9 +99,14 @@ export class HomeComponent implements OnInit{
     })
   }
 
-  ngOnInit(): void {
-      this.callProducts();
-      this.callCategories();
+  addProductToCart(prodId:string){
+    this.cartService.addProductToCart(prodId).subscribe({
+      next: (res)=>{
+        console.log(res);
+      },
+      error: (err)=>{
+        console.log(err);
+      }
+    })
   }
-
 }
