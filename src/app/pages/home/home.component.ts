@@ -1,13 +1,17 @@
+import { RouterLink } from '@angular/router';
 import { CategoriesService } from '../../core/services/category/categories.service';
 import { ICategory } from '../../shared/interfaces/icategory';
 import { IProduct } from '../../shared/interfaces/iproduct';
 import { ProductsService } from './../../core/services/product/products.service';
 import { Component, inject, OnInit } from '@angular/core';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
+import { CurrencyPipe } from '@angular/common';
+import { SearchPipe } from '../../shared/pipes/search/search.pipe';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
-  imports: [CarouselModule],
+  imports: [CarouselModule, RouterLink, CurrencyPipe, SearchPipe, FormsModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -15,6 +19,8 @@ export class HomeComponent implements OnInit{
 
   myProducts : IProduct[] = [];
   myCategories : ICategory[] = [];
+
+  searchItem : string = '';
 
   private readonly productsService = inject(ProductsService)
   private readonly categoriesService = inject(CategoriesService)
