@@ -13,7 +13,7 @@ export class PaymentService {
   myToken = localStorage.getItem('myToken');
 
   checkoutSession(cartId:string, shippingData: object): Observable<any>{
-    return this.httpClient.post(`${environment.baseUrl}/api/v1/orders/checkout-session/${cartId}?url=http://localhost:4200`,
+    return this.httpClient.post(`${environment.baseUrl}/api/v1/orders/checkout-session/${cartId}?url=${window.location.origin}`,
       {
         "shippingAddress": shippingData
       },
