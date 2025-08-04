@@ -16,14 +16,15 @@ export class DetailsComponent implements OnInit{
   private readonly productService = inject(ProductsService)
   private readonly cartService = inject(CartService)
 
-  productId : any
+  productId : string = '';
+
   productDetails : IProduct | null = null;
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe({
       next: (res)=>{
         // console.log(res.get('id'));
-        this.productId = res.get('id')
+        this.productId = res.get('id')!
         this.productService.getSpecificProduct(this.productId).subscribe({
 
           next: (res)=>{

@@ -18,7 +18,7 @@ export class CartComponent implements OnInit {
   ngOnInit(): void {
     this.cartService.getLoggedUserCart().subscribe({
       next:(res)=>{
-        console.log(res);
+        console.log(res.data);
         this.cartItems = res.data
       },
       error:(err)=>{
