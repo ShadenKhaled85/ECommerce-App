@@ -1,3 +1,4 @@
+import { CartService } from './../../core/services/cart/cart.service';
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductsService } from '../../core/services/product/products.service';
@@ -13,6 +14,7 @@ export class DetailsComponent implements OnInit{
 
   private readonly activatedRoute = inject(ActivatedRoute)
   private readonly productService = inject(ProductsService)
+  private readonly cartService = inject(CartService)
 
   productId : any
   productDetails : IProduct | null = null;
@@ -34,6 +36,17 @@ export class DetailsComponent implements OnInit{
           }
         })
       },
+    })
+  }
+
+  addProductToCart(productId:string){
+    this.cartService.addProductToCart(productId).subscribe({
+      next: (res)=>{
+        console.log(res);
+      },
+      error: (err)=>{
+        console.log(err);
+      }
     })
   }
 }
