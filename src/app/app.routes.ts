@@ -13,7 +13,7 @@ export const routes: Routes = [
       {path: 'products', loadComponent: ()=> import('./pages/products/products.component').then( (comp => comp.ProductsComponent)) , title: 'Products'},
       {path: 'categories', loadComponent: ()=> import('./pages/categories/categories.component').then( (comp => comp.CategoriesComponent)) , title: 'Categories'},
       {path: 'brands', loadComponent: ()=> import('./pages/brands/brands.component').then( (comp => comp.BrandsComponent)) , title: 'Brands'},
-      {path: 'details/:id', loadComponent: ()=> import('./pages/details/details.component').then( (comp => comp.DetailsComponent)) , title: 'Product Details'}
+      {path: 'details/:id', loadComponent: ()=> import('./pages/details/details.component').then( (comp => comp.DetailsComponent)) , title: 'Product Details', data: { renderMode: 'client' }}
   ]},
 
   {path:'', component: AuthComponent, canActivate: [loggedGuard], title: 'Auth', children: [
