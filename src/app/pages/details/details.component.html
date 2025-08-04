@@ -16,12 +16,14 @@
       {{productDetails.description!}}
     </p>
 
-    <!-- (click)="onAddToCart()" -->
 
-    <button
-      class="mt-4 w-full cursor-pointer md:w-auto bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg transition duration-200">
-      Add to Cart
-    </button>
+    <!-- ? Add to Cart Button -->
+    <div class="p-5 pt-0" (click)="addProductToCart(productDetails._id)">
+      <button
+        class="cursor-pointer w-full py-2 rounded-xl bg-blue-600 text-white font-semibold shadow-md transition-colors duration-300 ease-in-out hover:bg-blue-700 hover:shadow-lg">
+        Add to Cart
+      </button>
+    </div>
   </div>
 </div>
 }

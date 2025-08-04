@@ -19,6 +19,7 @@ export const routes: Routes = [
   {path:'', component: AuthComponent, canActivate: [loggedGuard], title: 'Auth', children: [
     {path: 'login', loadComponent: ()=> import('./pages/login/login.component').then( (comp) => comp.LoginComponent ), title: 'Login'},
     {path: 'register', loadComponent: ()=> import('./pages/register/register.component').then( (comp) => comp.RegisterComponent ), title: 'Register'},
+    {path: 'forgotPass', loadComponent: ()=> import('./shared/components/ui/forgot-password/forgot-password.component').then( (comp) => comp.ForgotPasswordComponent ), title: 'Forgot Password'},
     {path: '**', loadComponent: ()=> import('./pages/not-found/not-found.component').then( (comp) => comp.NotFoundComponent), title: 'Not Found !!!'}
   ]},
 ];
