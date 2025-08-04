@@ -26,7 +26,6 @@ export class DetailsComponent implements OnInit{
         // console.log(res.get('id'));
         this.productId = res.get('id')!
         this.productService.getSpecificProduct(this.productId).subscribe({
-
           next: (res)=>{
             // console.log(res);
             this.productDetails = res.data
