@@ -14,7 +14,7 @@ export class CategoriesService {
     return this.httpClient.get(`${environment.baseUrl}/api/v1/categories`)
   }
 
-  getSpecificCategories(catId:string) : Observable<any>{
+  getProductsByCategories(catId:string) : Observable<any>{
     return this.httpClient.get(`${environment.baseUrl}/api/v1/categories/${catId}`)
   }
 }

@@ -15,7 +15,8 @@ export const routes: Routes = [
       {path: 'brands', loadComponent: ()=> import('./pages/brands/brands.component').then( (comp => comp.BrandsComponent)) , title: 'Brands'},
       {path: 'allorders', loadComponent: ()=> import('./pages/allorders/allorders.component').then( (comp => comp.AllordersComponent)) , title: 'All Orders'},
       {path: 'checkout/:cartId', loadComponent: ()=> import('./pages/checkout/checkout.component').then( (comp => comp.CheckoutComponent)) , title: 'Checkout'},
-      {path: 'details/:id', loadComponent: ()=> import('./pages/details/details.component').then( (comp => comp.DetailsComponent)) , title: 'Product Details'}
+      {path: 'details/:id', loadComponent: ()=> import('./pages/details/details.component').then( (comp => comp.DetailsComponent)) , title: 'Product Details'},
+      {path: 'categoryDetails/:catId', loadComponent: ()=> import('./pages/category-details/category-details.component').then( (comp => comp.CategoryDetailsComponent)) , title: 'Category products'},
   ]},
 
   {path:'', component: AuthComponent, canActivate: [loggedGuard], title: 'Auth', children: [

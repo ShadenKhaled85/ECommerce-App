@@ -17,7 +17,6 @@ export class DetailsComponent implements OnInit{
   private readonly cartService = inject(CartService)
 
   productId : string = '';
-
   productDetails : IProduct | null = null;
 
   ngOnInit(): void {

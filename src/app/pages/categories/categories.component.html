@@ -3,7 +3,7 @@
 
   <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
     @for (category of categories; track category._id) {
-    <div
+    <div [routerLink]="['/categoryDetails', category._id]"
       class="bg-white rounded-xl shadow hover:shadow-lg transition cursor-pointer group p-4 flex flex-col items-center">
       <img [src]="category.image" [alt]="category.name"
         class="w-32 h-32 object-cover rounded-full border group-hover:scale-105 transition" />
