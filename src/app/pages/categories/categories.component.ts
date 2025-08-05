@@ -15,8 +15,6 @@ export class CategoriesComponent implements OnInit {
 
   categories : ICategory[] = [];
 
-  catId : string = '';
-
   ngOnInit(): void {
     this.getCategories()
   }

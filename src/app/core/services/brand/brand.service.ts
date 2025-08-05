@@ -13,4 +13,9 @@ export class BrandService {
   getBrands():Observable<any>{
     return this.httpClient.get(`${environment.baseUrl}/api/v1/brands`)
   }
+
+  getSpecificBrand(brandId:string):Observable<any>{
+    return this.httpClient.get(`${environment.baseUrl}/api/v1/brands/${brandId}`)
+  }
+
 }
