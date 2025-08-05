@@ -4,6 +4,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CartService } from '../../core/services/cart/cart.service';
 import { ICategory } from '../../shared/interfaces/icategory';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-category-details',
@@ -16,6 +17,7 @@ export class CategoryDetailsComponent implements OnInit {
   private readonly activatedRoute = inject(ActivatedRoute)
   private readonly cartService = inject(CartService)
   private readonly productsService = inject(ProductsService)
+  private readonly toastrService = inject(ToastrService)
 
   products : IProduct[] = [];
   catId : string = '';
@@ -48,9 +50,11 @@ export class CategoryDetailsComponent implements OnInit {
     this.cartService.addProductToCart(productId).subscribe({
       next: (res)=>{
         console.log(res);
+        this.toastrService.success(res.message);
       },
       error: (err)=>{
         console.log(err);
+        this.toastrService.error(err.message);
       }
     })
   }

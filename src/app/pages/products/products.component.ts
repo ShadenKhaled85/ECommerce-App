@@ -2,7 +2,8 @@ import { CartService } from './../../core/services/cart/cart.service';
 import { IProduct } from './../../shared/interfaces/iproduct';
 import { Component, inject, OnInit } from '@angular/core';
 import { ProductsService } from '../../core/services/product/products.service';
-import { RouterLink, ActivatedRoute } from '@angular/router';
+import { RouterLink } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-products',
@@ -14,7 +15,7 @@ export class ProductsComponent implements OnInit{
 
   private readonly productsService = inject(ProductsService)
   private readonly cartService = inject(CartService)
-  private readonly activatedRoute = inject(ActivatedRoute)
+  private readonly toastrService = inject(ToastrService)
 
   products : IProduct[] = [];
   productId : string = '';
@@ -37,11 +38,13 @@ export class ProductsComponent implements OnInit{
 
   addProductToCart(productId:string){
     this.cartService.addProductToCart(productId).subscribe({
-      next:(res)=>{
+      next: (res)=>{
         console.log(res);
+        this.toastrService.success(res.message);
       },
-      error:(err)=>{
+      error: (err)=>{
         console.log(err);
+        this.toastrService.error(err.message);
       }
     })
   }

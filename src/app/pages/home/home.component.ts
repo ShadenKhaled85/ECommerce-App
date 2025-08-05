@@ -9,6 +9,7 @@ import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { CurrencyPipe } from '@angular/common';
 import { SearchPipe } from '../../shared/pipes/search/search.pipe';
 import { FormsModule } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-home',
@@ -26,6 +27,7 @@ export class HomeComponent implements OnInit{
   private readonly productsService = inject(ProductsService)
   private readonly categoriesService = inject(CategoriesService)
   private readonly cartService = inject(CartService)
+  private readonly toastrService = inject(ToastrService)
 
   customOptions: OwlOptions = {
     loop: true,
@@ -49,7 +51,7 @@ export class HomeComponent implements OnInit{
         items: 3
       },
       940: {
-        items: 6
+        items: 4
       }
     },
     nav: true
@@ -103,9 +105,11 @@ export class HomeComponent implements OnInit{
     this.cartService.addProductToCart(prodId).subscribe({
       next: (res)=>{
         console.log(res);
+        this.toastrService.success(res.message, 'Cart', {progressBar:true});
       },
       error: (err)=>{
         console.log(err);
+        this.toastrService.error(err.message);
       }
     })
   }
