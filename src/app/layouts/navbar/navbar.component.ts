@@ -15,7 +15,8 @@ export class NavbarComponent implements OnInit{
 
   // @Input() isLoggedIn: boolean = true;
   isLoggedIn = input<boolean>(true);
-  isMenuOpen : boolean = false;
+  isMenuOpen = false;
+  isDesktop = false;
 
   ngOnInit(): void {
     this.flowbiteService.loadFlowbite((flowbite) => {
@@ -25,6 +26,15 @@ export class NavbarComponent implements OnInit{
 
   signOut(){
     this.authService.signOut()
+  }
+
+  toggleMenu(event: Event) {
+    event.stopPropagation();
+    this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  closeMenu() {
+    this.isMenuOpen = false;
   }
 }
 
