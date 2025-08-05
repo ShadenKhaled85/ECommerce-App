@@ -44,7 +44,6 @@ export class CategoryDetailsComponent implements OnInit {
     });
   }
 
-
   addProductToCart(productId:string){
     this.cartService.addProductToCart(productId).subscribe({
       next: (res)=>{

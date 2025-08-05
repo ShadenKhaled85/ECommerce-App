@@ -10,6 +10,10 @@ export const serverRoutes: ServerRoute[] = [
     renderMode: RenderMode.Server
   },
   {
+    path: 'categoryDetails/:catId',
+    renderMode: RenderMode.Server
+  },
+  {
     path: '**',
     renderMode: RenderMode.Prerender
   }

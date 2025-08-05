@@ -15,6 +15,7 @@ export class NavbarComponent implements OnInit{
 
   // @Input() isLoggedIn: boolean = true;
   isLoggedIn = input<boolean>(true);
+  isMenuOpen : boolean = false;
 
   ngOnInit(): void {
     this.flowbiteService.loadFlowbite((flowbite) => {
