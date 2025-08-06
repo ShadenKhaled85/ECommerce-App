@@ -16,11 +16,6 @@ export class PaymentService {
     return this.httpClient.post(`${environment.baseUrl}/api/v1/orders/checkout-session/${cartId}?url=${window.location.origin}`,
       {
         "shippingAddress": shippingData
-      },
-      {
-        headers:{
-          token: this.myToken!
-        }
       }
     )
   }

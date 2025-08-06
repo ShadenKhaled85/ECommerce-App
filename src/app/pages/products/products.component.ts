@@ -29,9 +29,6 @@ export class ProductsComponent implements OnInit{
       next:(res)=>{
         console.log(res);
         this.products = res.data;
-      },
-      error:(err)=>{
-        console.log(err);
       }
     })
   }
@@ -41,10 +38,6 @@ export class ProductsComponent implements OnInit{
       next: (res)=>{
         console.log(res);
         this.toastrService.success(res.message);
-      },
-      error: (err)=>{
-        console.log(err);
-        this.toastrService.error(err.message);
       }
     })
   }

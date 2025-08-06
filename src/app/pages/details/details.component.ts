@@ -31,9 +31,6 @@ export class DetailsComponent implements OnInit{
             // console.log(res);
             this.productDetails = res.data
             console.log(this.productDetails);
-          },
-          error: (err)=>{
-            console.log(err);
           }
         })
       },
@@ -45,10 +42,6 @@ export class DetailsComponent implements OnInit{
       next: (res)=>{
         console.log(res);
         this.toastrService.success(res.message);
-      },
-      error: (err)=>{
-        console.log(err);
-        this.toastrService.error(err.message);
       }
     })
   }

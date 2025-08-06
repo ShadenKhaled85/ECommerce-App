@@ -40,9 +40,6 @@ export class ForgotPasswordComponent {
         if(res.statusMsg == 'success'){
           this.step = 2;
         }
-      },
-      error:(err)=>{
-        console.log(err);
       }
     })
   }
@@ -54,9 +51,6 @@ export class ForgotPasswordComponent {
         if(res.status == 'Success'){
           this.step = 3;
         }
-      },
-      error:(err)=>{
-        console.log(err);
       }
     })
   }
@@ -74,11 +68,7 @@ export class ForgotPasswordComponent {
         setTimeout(() => {
           this.router.navigate(['/home'])
         }, 1000);
-        },
-
-      error:(err)=>{
-        console.log(err);
-      }
+        }
     })
   }
 

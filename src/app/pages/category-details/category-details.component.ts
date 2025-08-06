@@ -29,9 +29,6 @@ export class CategoryDetailsComponent implements OnInit {
         console.log(res.get('catId'));
         this.catId = res.get('catId')!
         this.getProductsByCategory()
-      },
-      error: (err)=>{
-        console.log(err);
       }
     })
   }
@@ -41,8 +38,7 @@ export class CategoryDetailsComponent implements OnInit {
       next: (res) => {
         // Filter products by category id
         this.products = res.data.filter((p: IProduct) => p.category._id === this.catId);
-      },
-      error: (err) => console.log(err)
+      }
     });
   }
 
@@ -51,10 +47,6 @@ export class CategoryDetailsComponent implements OnInit {
       next: (res)=>{
         console.log(res);
         this.toastrService.success(res.message);
-      },
-      error: (err)=>{
-        console.log(err);
-        this.toastrService.error(err.message);
       }
     })
   }

@@ -10,62 +10,32 @@ export class CartService {
 
   constructor( private httpClient : HttpClient) { }
 
-  myToken = localStorage.getItem('myToken')!;
-
   addProductToCart( productId:string ) : Observable<any> {
     return this.httpClient.post(`${environment.baseUrl}/api/v1/cart`,
       { // Body
       "productId": productId
-      },
-      { // Headers
-        headers: {
-          token : this.myToken
-        }
       }
     )
   }
 
   getLoggedUserCart() : Observable<any>{
-    return this.httpClient.get(`${environment.baseUrl}/api/v1/cart`,
-      {
-        headers: {
-          token : this.myToken
-        }
-      }
-    )
+    return this.httpClient.get(`${environment.baseUrl}/api/v1/cart`)
   }
 
   removeCartItem(productId:string) : Observable<any>{
-    return this.httpClient.delete(`${environment.baseUrl}/api/v1/cart/${productId}` ,
-      {
-        headers: {
-          token: this.myToken
-        }
-      }
-    )
+    return this.httpClient.delete(`${environment.baseUrl}/api/v1/cart/${productId}`)
   }
 
   updateCartProductQuantity(productId: string, quantity: any): Observable<any>{
     return this.httpClient.put(`${environment.baseUrl}/api/v1/cart/${productId}`,
       {
         "count": quantity
-      },
-      {
-        headers:{
-          token: this.myToken
-        }
       }
     )
   }
 
   clearUserCart(): Observable<any>{
-    return this.httpClient.delete(`${environment.baseUrl}/api/v1/cart` ,
-      {
-        headers:{
-          token: this.myToken
-        }
-      }
-    )
+    return this.httpClient.delete(`${environment.baseUrl}/api/v1/cart`)
   }
 }
 

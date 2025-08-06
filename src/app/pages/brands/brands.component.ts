@@ -23,9 +23,6 @@ export class BrandsComponent implements OnInit {
       next: (res)=>{
         console.log(res);
         this.brands = res.data;
-      },
-      error: (err)=>{
-        console.log(err);
       }
     })
   }

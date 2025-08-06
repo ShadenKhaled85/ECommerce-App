@@ -48,23 +48,17 @@
         }
       </ul>
 
-      <!-- ? Social & Auth Icons (Desktop Only) -->
       <ul class="capitalize font-medium hidden md:flex items-center space-x-6">
-        <li><a href="" class="hover:text-gray-200 hover:scale-110 transition"><i class="fab fa-instagram"></i></a></li>
-        <li><a href="" class="hover:text-gray-200 hover:scale-110 transition"><i class="fab fa-facebook"></i></a></li>
-        <li><a href="" class="hover:text-gray-200 hover:scale-110 transition"><i class="fab fa-tiktok"></i></a></li>
-        <li><a href="" class="hover:text-gray-200 hover:scale-110 transition"><i class="fab fa-twitter"></i></a></li>
-        <li><a href="" class="hover:text-gray-200 hover:scale-110 transition"><i class="fab fa-linkedin"></i></a></li>
-        <li><a href="" class="hover:text-gray-200 hover:scale-110 transition"><i class="fab fa-youtube"></i></a></li>
 
         @if (isLoggedIn()) {
         <li><a (click)="signOut()" class="cursor-pointer hover:text-gray-200 transition">Logout</a></li>
         } @else {
         <li><a routerLink="login" routerLinkActive="bg-white text-blue-700 rounded-lg"
-            class="hover:text-gray-200 transition">Login</a></li>
+            class="block py-2 px-3 hover:bg-white hover:text-blue-700 transition rounded-sm md:p-1">Login</a></li>
         <li><a routerLink="register" routerLinkActive="bg-white text-blue-700 rounded-lg"
-            class="hover:text-gray-200 transition">Register</a></li>
+            class="block py-2 px-3 hover:bg-white hover:text-blue-700 transition rounded-sm md:p-1">Register</a></li>
         }
+
       </ul>
     </div>
   </div>

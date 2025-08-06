@@ -30,9 +30,6 @@ export class CheckoutComponent implements OnInit {
       next:(res)=>{
         console.log(res);
         this.cartId = res.get('cartId')!
-      },
-      error:(err)=>{
-        console.log(err);
       }
     })
   }
@@ -45,9 +42,6 @@ export class CheckoutComponent implements OnInit {
         if(res.status === 'success'){
           window.open(res.session.url, '_self')
         }
-      },
-      error:(err)=>{
-        console.log(err);
       }
     })
   }

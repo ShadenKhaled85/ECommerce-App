@@ -1,5 +1,5 @@
 <div class="max-w-5xl mx-auto px-6 py-10">
-  <h1 class="text-3xl font-bold text-blue-600 mb-8 text-center">All Orders</h1>
+  <h1 class="text-3xl font-bold text-blue-600 mb-8 text-center">My Orders</h1>
 
   <div class="space-y-8">
     @for (order of orders; track order.id) {
@@ -60,9 +60,6 @@
         <p class="text-gray-700 text-lg font-semibold">
           Total: <span class="text-blue-600">{{ order.totalOrderPrice }} EGP</span>
         </p>
-        <button class="px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition shadow">
-          View Details
-        </button>
       </div>
     </div>
     }

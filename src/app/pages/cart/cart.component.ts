@@ -20,9 +20,6 @@ export class CartComponent implements OnInit {
       next:(res)=>{
         console.log(res.data);
         this.cartItems = res.data
-      },
-      error:(err)=>{
-        console.log(err);
       }
     })
   }
@@ -32,9 +29,6 @@ export class CartComponent implements OnInit {
       next:(res)=>{
         console.log(res);
         this.cartItems = res.data
-      },
-      error:(err)=>{
-        console.log(err);
       }
     })
   }
@@ -44,9 +38,6 @@ export class CartComponent implements OnInit {
       next:(res)=>{
         console.log(res);
         this.cartItems = res.data
-      },
-      error:(err)=>{
-        console.log(err);
       }
     })
   }
@@ -56,9 +47,6 @@ export class CartComponent implements OnInit {
       next:(res)=>{
         console.log(res);
         this.cartItems = {} as ICartItem;
-      },
-      error:(err)=>{
-        console.log(err);
       }
     })
   }

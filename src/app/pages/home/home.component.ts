@@ -10,6 +10,7 @@ import { CurrencyPipe } from '@angular/common';
 import { SearchPipe } from '../../shared/pipes/search/search.pipe';
 import { FormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { NgxSpinnerService  } from "ngx-spinner";
 
 @Component({
   selector: 'app-home',
@@ -28,6 +29,7 @@ export class HomeComponent implements OnInit{
   private readonly categoriesService = inject(CategoriesService)
   private readonly cartService = inject(CartService)
   private readonly toastrService = inject(ToastrService)
+  private readonly spinnerService = inject(NgxSpinnerService )
 
   customOptions: OwlOptions = {
     loop: true,
@@ -82,9 +84,6 @@ export class HomeComponent implements OnInit{
       next: (res)=> {
         console.log(res.data);
         this.myProducts = res.data
-      },
-      error: (err)=>{
-        console.log(err);
       }
     })
   }
@@ -94,22 +93,17 @@ export class HomeComponent implements OnInit{
       next: (res)=> {
         console.log(res.data);
         this.myCategories = res.data
-      },
-      error: (err)=>{
-        console.log(err);
       }
     })
   }
 
   addProductToCart(prodId:string){
+    this.spinnerService.show()
     this.cartService.addProductToCart(prodId).subscribe({
       next: (res)=>{
+        this.spinnerService.hide()
         console.log(res);
         this.toastrService.success(res.message, 'Cart', {progressBar:true});
-      },
-      error: (err)=>{
-        console.log(err);
-        this.toastrService.error(err.message);
       }
     })
   }
