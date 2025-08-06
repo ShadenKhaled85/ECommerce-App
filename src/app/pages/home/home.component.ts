@@ -98,10 +98,8 @@ export class HomeComponent implements OnInit{
   }
 
   addProductToCart(prodId:string){
-    this.spinnerService.show()
     this.cartService.addProductToCart(prodId).subscribe({
       next: (res)=>{
-        this.spinnerService.hide()
         console.log(res);
         this.toastrService.success(res.message, 'Cart', {progressBar:true});
       }
