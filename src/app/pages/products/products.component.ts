@@ -4,6 +4,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { ProductsService } from '../../core/services/product/products.service';
 import { RouterLink } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { WishlistService } from '../../core/services/wishlist/wishlist.service';
 
 @Component({
   selector: 'app-products',
@@ -16,6 +17,8 @@ export class ProductsComponent implements OnInit{
   private readonly productsService = inject(ProductsService)
   private readonly cartService = inject(CartService)
   private readonly toastrService = inject(ToastrService)
+  private readonly wishlistService = inject(WishlistService)
+
 
   products : IProduct[] = [];
   productId : string = '';
@@ -38,6 +41,15 @@ export class ProductsComponent implements OnInit{
       next: (res)=>{
         console.log(res);
         this.toastrService.success(res.message);
+      }
+    })
+  }
+
+  addProductToWishlist(productId:string){
+    this.wishlistService.addProductToWishlist(productId).subscribe({
+      next: (res)=>{
+        console.log(res);
+        this.toastrService.success(res.message, 'Wishlist', {progressBar:true});
       }
     })
   }

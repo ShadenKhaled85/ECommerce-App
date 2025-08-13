@@ -13,7 +13,7 @@ export class CartService {
   addProductToCart( productId:string ) : Observable<any> {
     return this.httpClient.post(`${environment.baseUrl}/api/v1/cart`,
       { // Body
-      "productId": productId
+        "productId": productId
       }
     )
   }

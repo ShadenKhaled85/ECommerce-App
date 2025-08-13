@@ -11,6 +11,7 @@ import { SearchPipe } from '../../shared/pipes/search/search.pipe';
 import { FormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService  } from "ngx-spinner";
+import { WishlistService } from '../../core/services/wishlist/wishlist.service';
 
 @Component({
   selector: 'app-home',
@@ -28,8 +29,8 @@ export class HomeComponent implements OnInit{
   private readonly productsService = inject(ProductsService)
   private readonly categoriesService = inject(CategoriesService)
   private readonly cartService = inject(CartService)
+  private readonly wishlistService = inject(WishlistService)
   private readonly toastrService = inject(ToastrService)
-  private readonly spinnerService = inject(NgxSpinnerService )
 
   customOptions: OwlOptions = {
     loop: true,
@@ -105,4 +106,14 @@ export class HomeComponent implements OnInit{
       }
     })
   }
+
+  addProductToWishlist(productId:string){
+    this.wishlistService.addProductToWishlist(productId).subscribe({
+      next: (res)=>{
+        console.log(res);
+        this.toastrService.success(res.message, 'Wishlist', {progressBar:true});
+      }
+    })
+  }
+
 }
