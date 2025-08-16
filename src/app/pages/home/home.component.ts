@@ -103,6 +103,8 @@ export class HomeComponent implements OnInit{
       next: (res)=>{
         console.log(res);
         this.toastrService.success(res.message, 'Cart', {progressBar:true});
+        this.cartService.cartCountItems.next(res.numOfCartItems);
+        console.log(this.cartService.cartCountItems);
       }
     })
   }

@@ -26,7 +26,7 @@
 
     <!-- ? Menu -->
     <div [class.hidden]="!isMenuOpen"
-      class="w-full text-white md:flex flex-grow justify-between md:w-auto md:px-4 transition-all duration-400 ease-in-out"
+      class="w-full text-white md:flex flex-grow justify-between items-center md:w-auto md:px-4 transition-all duration-400 ease-in-out"
       id="navbar-default">
 
       <!-- ? Nav Links -->
@@ -53,6 +53,13 @@
       <ul class="capitalize font-medium hidden md:flex items-center space-x-6">
 
         @if (isLoggedIn()) {
+        <li>
+          <a routerLink="cart" class="block relative text-2xl py-2 px-3 rounded-sm md:p-1">
+            <i class="fas fa-shopping-cart"></i>
+            <span
+              class="absolute top-0 right-[-10px] text-xs bg-white text-blue-700 rounded-lg px-1 py-1">{{cartCountItems}}</span>
+          </a>
+        </li>
         <li><a (click)="signOut()" class="cursor-pointer hover:text-gray-200 transition">Logout</a></li>
         } @else {
         <li><a routerLink="login" routerLinkActive="bg-white text-blue-700 rounded-lg"

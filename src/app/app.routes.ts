@@ -9,15 +9,15 @@ export const routes: Routes = [
 
   {path:'', component: BlankComponent, canActivate: [authGuard], title: 'Blank', children: [ // We removed 'blank' from path
     {path: 'home', loadComponent: ()=> import('./pages/home/home.component').then( (comp => comp.HomeComponent)) , title: 'Home'},
-      {path: 'cart', loadComponent: ()=> import('./pages/cart/cart.component').then( (comp => comp.CartComponent)) , title: 'Cart'},
-      {path: 'products', loadComponent: ()=> import('./pages/products/products.component').then( (comp => comp.ProductsComponent)) , title: 'Products'},
-      {path: 'categories', loadComponent: ()=> import('./pages/categories/categories.component').then( (comp => comp.CategoriesComponent)) , title: 'Categories'},
-      {path: 'brands', loadComponent: ()=> import('./pages/brands/brands.component').then( (comp => comp.BrandsComponent)) , title: 'Brands'},
-      {path: 'allorders', loadComponent: ()=> import('./pages/allorders/allorders.component').then( (comp => comp.AllordersComponent)) , title: 'All Orders'},
-      {path: 'wishlist', loadComponent: ()=> import('./pages/wishlist/wishlist.component').then( (comp => comp.WishlistComponent)) , title: 'Wishlist'},
-      {path: 'checkout/:cartId', loadComponent: ()=> import('./pages/checkout/checkout.component').then( (comp => comp.CheckoutComponent)) , title: 'Checkout'},
-      {path: 'details/:id', loadComponent: ()=> import('./pages/details/details.component').then( (comp => comp.DetailsComponent)) , title: 'Product Details'},
-      {path: 'categoryDetails/:catId', loadComponent: ()=> import('./pages/category-details/category-details.component').then( (comp => comp.CategoryDetailsComponent)) , title: 'Category products'},
+    {path: 'cart', loadComponent: ()=> import('./pages/cart/cart.component').then( (comp => comp.CartComponent)) , title: 'Cart'},
+    {path: 'products', loadComponent: ()=> import('./pages/products/products.component').then( (comp => comp.ProductsComponent)) , title: 'Products'},
+    {path: 'categories', loadComponent: ()=> import('./pages/categories/categories.component').then( (comp => comp.CategoriesComponent)) , title: 'Categories'},
+    {path: 'brands', loadComponent: ()=> import('./pages/brands/brands.component').then( (comp => comp.BrandsComponent)) , title: 'Brands'},
+    {path: 'allorders', loadComponent: ()=> import('./pages/allorders/allorders.component').then( (comp => comp.AllordersComponent)) , title: 'All Orders'},
+    {path: 'wishlist', loadComponent: ()=> import('./pages/wishlist/wishlist.component').then( (comp => comp.WishlistComponent)) , title: 'Wishlist'},
+    {path: 'checkout/:cartId', loadComponent: ()=> import('./pages/checkout/checkout.component').then( (comp => comp.CheckoutComponent)) , title: 'Checkout'},
+    {path: 'details/:id', loadComponent: ()=> import('./pages/details/details.component').then( (comp => comp.DetailsComponent)) , title: 'Product Details'},
+    {path: 'categoryDetails/:catId', loadComponent: ()=> import('./pages/category-details/category-details.component').then( (comp => comp.CategoryDetailsComponent)) , title: 'Category products'},
   ]},
 
   {path:'', component: AuthComponent, canActivate: [loggedGuard], title: 'Auth', children: [
