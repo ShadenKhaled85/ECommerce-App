@@ -14,7 +14,6 @@ export class CartComponent implements OnInit {
   private readonly cartService = inject(CartService)
 
   cartItems : ICartItem = {} as ICartItem;
-  cartItemsCount : number = 0;
 
   ngOnInit(): void {
     this.cartService.getLoggedUserCart().subscribe({
@@ -30,11 +29,7 @@ export class CartComponent implements OnInit {
       next:(res)=>{
         console.log(res);
         this.cartItems = res.data
-        this.cartService.cartCountItems.subscribe({
-          next:(value)=>{
-            this.cartItemsCount = value;
-          }
-        })
+        this.cartService.cartCountItems.next(res.numOfCartItems);
       }
     })
   }
@@ -53,6 +48,10 @@ export class CartComponent implements OnInit {
       next:(res)=>{
         console.log(res);
         this.cartItems = {} as ICartItem;
+        this.cartService.cartCountItems.next(0);
+      },
+      error:(err)=>{
+        console.log(err);
       }
     })
   }

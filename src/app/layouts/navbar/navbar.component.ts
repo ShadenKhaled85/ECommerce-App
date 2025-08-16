@@ -24,17 +24,35 @@ export class NavbarComponent implements OnInit{
   cartCountItems : number = 0;
 
   ngOnInit(): void {
-    // this.cartCountItems = this.cartService.cartCountItems;
-    this.cartService.cartCountItems.subscribe({
-      next:(value)=>{
-        console.log(value);
-        this.cartCountItems = value;
-      }
-    }) ;
+    this.getCartCountItems();
+
+    this.getLoggedUserCart();
 
     this.flowbiteService.loadFlowbite((flowbite) => {
       initFlowbite();
     });
+  }
+
+  getCartCountItems(){
+    // this.cartCountItems = this.cartService.cartCountItems;
+    this.cartService.cartCountItems.subscribe({
+          next:(value)=>{
+            console.log(value);
+            this.cartCountItems = value;
+          }
+        })
+  }
+
+  getLoggedUserCart(){
+    this.cartService.getLoggedUserCart().subscribe({
+      next:(res)=>{
+        console.log(res);
+        this.cartService.cartCountItems.next(res.numOfCartItems);
+      },
+      error:(err)=>{
+        console.log(err);
+      }
+    })
   }
 
   signOut(){
