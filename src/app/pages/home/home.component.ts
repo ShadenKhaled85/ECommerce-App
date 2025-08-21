@@ -38,6 +38,7 @@ export class HomeComponent implements OnInit{
     touchDrag: true,
     pullDrag: false,
     autoplay: true,
+    rtl: true,
     autoplayTimeout: 3000, // 3 secs
     autoplayHoverPause: true,
     dots: false,
@@ -66,6 +67,7 @@ export class HomeComponent implements OnInit{
     touchDrag: true,
     pullDrag: false,
     autoplay: true,
+    rtl: true,
     autoplayHoverPause: true,
     autoplayTimeout: 2000,
     dots: false,

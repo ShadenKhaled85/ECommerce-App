@@ -4,10 +4,12 @@ import { FlowbiteService } from './../../core/services/flowbite/flowbite.service
 import { Component, input, OnInit } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../core/services/auth/auth.service';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { MyTranslateService } from '../../core/services/myTranslate/my-translate.service';
 
 @Component({
   selector: 'app-navbar',
-  imports: [RouterLink, RouterLinkActive],
+  imports: [RouterLink, RouterLinkActive, TranslatePipe],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
@@ -16,12 +18,15 @@ export class NavbarComponent implements OnInit{
     private flowbiteService: FlowbiteService,
     private authService : AuthService,
     private cartService : CartService,
+    private myTranslateService : MyTranslateService,
+    private translateService : TranslateService,
   ) {}
 
   // @Input() isLoggedIn: boolean = true;
   isLoggedIn = input<boolean>(true);
   isMenuOpen : boolean = false
   cartCountItems : number = 0;
+  currentLange : string = '';
 
   ngOnInit(): void {
     this.getCartCountItems();
@@ -53,6 +58,14 @@ export class NavbarComponent implements OnInit{
         console.log(err);
       }
     })
+  }
+
+  changeLanguage(lang:string){
+    this.myTranslateService.changeLanguage(lang)
+  }
+
+  currentLang(lang:string):boolean{
+    return this.translateService.currentLang === lang;
   }
 
   signOut(){

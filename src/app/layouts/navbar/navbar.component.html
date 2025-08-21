@@ -34,19 +34,38 @@
               md:flex-row md:space-x-6 md:mt-0 md:border-0">
         @if (isLoggedIn()) {
         <li><a routerLink="home" routerLinkActive="bg-white text-blue-700 rounded-lg"
-            class="block py-2 px-3 hover:bg-white hover:text-blue-700 transition rounded-sm md:p-1">home</a></li>
+            class="block py-2 px-3 hover:bg-white hover:text-blue-700 transition rounded-sm md:p-1">
+            {{'navbar.home' | translate}} </a>
+        </li>
+
         <li><a routerLink="cart" routerLinkActive="bg-white text-blue-700 rounded-lg"
-            class="block py-2 px-3 hover:bg-white hover:text-blue-700 transition rounded-sm md:p-1">cart</a></li>
+            class="block py-2 px-3 hover:bg-white hover:text-blue-700 transition rounded-sm md:p-1">
+            {{'navbar.cart' | translate}} </a>
+        </li>
+
         <li><a routerLink="products" routerLinkActive="bg-white text-blue-700 rounded-lg"
-            class="block py-2 px-3 hover:bg-white hover:text-blue-700 transition rounded-sm md:p-1">products</a></li>
+            class="block py-2 px-3 hover:bg-white hover:text-blue-700 transition rounded-sm md:p-1">
+            {{'navbar.products' | translate}} </a>
+        </li>
+
         <li><a routerLink="categories" routerLinkActive="bg-white text-blue-700 rounded-lg"
-            class="block py-2 px-3 hover:bg-white hover:text-blue-700 transition rounded-sm md:p-1">categories</a></li>
+            class="block py-2 px-3 hover:bg-white hover:text-blue-700 transition rounded-sm md:p-1">
+            {{'navbar.categories' | translate}} </a>
+        </li>
+
         <li><a routerLink="brands" routerLinkActive="bg-white text-blue-700 rounded-lg"
-            class="block py-2 px-3 hover:bg-white hover:text-blue-700 transition rounded-sm md:p-1">brands</a></li>
+            class="block py-2 px-3 hover:bg-white hover:text-blue-700 transition rounded-sm md:p-1">
+            {{'navbar.brands' | translate}}</a>
+        </li>
+
         <li><a routerLink="allorders" routerLinkActive="bg-white text-blue-700 rounded-lg"
-            class="block py-2 px-3 hover:bg-white hover:text-blue-700 transition rounded-sm md:p-1">My Orders</a></li>
+            class="block py-2 px-3 hover:bg-white hover:text-blue-700 transition rounded-sm md:p-1">
+            {{'navbar.myOrders' | translate}}</a></li>
+
         <li><a routerLink="wishlist" routerLinkActive="bg-white text-blue-700 rounded-lg"
-            class="block py-2 px-3 hover:bg-white hover:text-blue-700 transition rounded-sm md:p-1">Wishlist</a></li>
+            class="block py-2 px-3 hover:bg-white hover:text-blue-700 transition rounded-sm md:p-1">
+            {{'navbar.wishlist'| translate}}</a>
+        </li>
         }
       </ul>
 
@@ -60,12 +79,44 @@
               class="absolute top-0 right-[-10px] text-xs bg-white text-blue-700 rounded-lg px-1 py-1">{{cartCountItems}}</span>
           </a>
         </li>
-        <li><a (click)="signOut()" class="cursor-pointer hover:text-gray-200 transition">Logout</a></li>
+
+        <li>
+          <button id="doubleDropdownButton" data-dropdown-toggle="doubleDropdown" data-dropdown-placement="right-start"
+            type="button"
+            class="flex items-center justify-between w-full px-4 py-2 text-white rounded-md hover:bg-blue-700 focus:ring-2 focus:ring-blue-400 transition">
+            {{'navbar.chooseLang' | translate}}
+          </button>
+
+          <div id="doubleDropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-md w-44">
+            <ul class="py-2 text-sm text-gray-700" aria-labelledby="doubleDropdownButton">
+              <li>
+                <a [class.hidden]="currentLang('en')" (click)="changeLanguage('en')"
+                  class="block px-4 py-2 text-blue-600 hover:bg-blue-50 hover:text-blue-800 transition">English</a>
+              </li>
+
+              <li>
+                <a [class.hidden]="currentLang('ar')" (click)="changeLanguage('ar')"
+                  class="block px-4 py-2 text-blue-600 hover:bg-blue-50 hover:text-blue-800 transition">Arabic</a>
+              </li>
+            </ul>
+          </div>
+        </li>
+
+        <li><a (click)="signOut()" class="hover:text-gray-200 transition">
+            {{'navbar.logout' | translate}}</a>
+        </li>
+
         } @else {
+
         <li><a routerLink="login" routerLinkActive="bg-white text-blue-700 rounded-lg"
-            class="block py-2 px-3 hover:bg-white hover:text-blue-700 transition rounded-sm md:p-1">Login</a></li>
+            class="block py-2 px-3 hover:bg-white hover:text-blue-700 transition rounded-sm md:p-1">
+            {{'navbar.login' | translate}}</a>
+        </li>
+
         <li><a routerLink="register" routerLinkActive="bg-white text-blue-700 rounded-lg"
-            class="block py-2 px-3 hover:bg-white hover:text-blue-700 transition rounded-sm md:p-1">Register</a></li>
+            class="block py-2 px-3 hover:bg-white hover:text-blue-700 transition rounded-sm md:p-1">
+            {{'navbar.register' | translate}}</a>
+        </li>
         }
 
       </ul>

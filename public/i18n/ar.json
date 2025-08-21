@@ -1,0 +1,22 @@
+{
+  "navbar": {
+    "home": "الرئيسية",
+    "cart": "سلة المشتريات",
+    "brands": "العلامات التجارية",
+    "categories": "الفئات",
+    "products": "المنتجات",
+    "myOrders": "طلباتي",
+    "wishlist": "قائمة الرغبات",
+    "logout": "تسجيل الخروج",
+    "login": "تسجيل الدخول",
+    "register": "إنشاء حساب",
+    "chooseLang" : "اختر لغة"
+  },
+  "login": {
+    "login": "تسجيل الدخول",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "forgotPassword": "نسيت كلمة المرور",
+    "createANewAccount" : "إنشاء حساب"
+  }
+}

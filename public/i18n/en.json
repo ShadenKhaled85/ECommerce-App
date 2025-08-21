@@ -1,0 +1,24 @@
+{
+  "navbar" : {
+    "home" : "Home",
+    "cart" : "Cart",
+    "brands" : "Brands",
+    "categories" : "Categories",
+    "products" : "Products",
+    "myOrders" : "My Orders",
+    "wishlist" : "wishlist",
+    "logout" : "Logout",
+    "login" : "Login",
+    "register" : "Register",
+    "chooseLang" : "Choose Language"
+  },
+  "login" : {
+    "login" : "Login",
+    "email" : "Email",
+    "password" : "Password",
+    "forgotPassword" : "Forgot password",
+    "createANewAccount" : "Create a New Account"
+  }
+
+
+}

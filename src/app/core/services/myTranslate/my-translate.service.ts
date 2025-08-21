@@ -7,13 +7,16 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class MyTranslateService {
 
-  constructor( private translateService : TranslateService, private rendererFactory: RendererFactory2, @Inject(PLATFORM_ID) private platformId : object) {
+  constructor(
+    private translateService : TranslateService,
+    private rendererFactory: RendererFactory2,
+    @Inject(PLATFORM_ID) private platformId : object ) {
 
     if(isPlatformBrowser(platformId)){
       this.renderer = rendererFactory.createRenderer(null, null);
 
       // 1) Set default language
-      translateService.setDefaultLang('en')
+      translateService.setFallbackLang('en')
 
       // 2) Get language from localStorage
       let savedLang = localStorage.getItem('myLang')
@@ -48,7 +51,7 @@ export class MyTranslateService {
     changeDirection(): void {
     const htmlElement = document.documentElement;
 
-    const lang = localStorage.getItem('myToken');
+    const lang = localStorage.getItem('myLang');
     if (lang === 'en') {
       // dir ltr
       this.renderer!.setAttribute(htmlElement, 'dir', 'ltr');
@@ -59,4 +62,16 @@ export class MyTranslateService {
         this.renderer!.setAttribute(htmlElement, 'lang', 'ar');
     }
   }
+
+  changeLanguage(lang:string){
+    // 1) Save lang in LocalStorage
+    localStorage.setItem('myLang' , lang);
+
+    // 2) Use language
+    this.translateService.use(lang);
+
+    // 3) Change direction
+    this.changeDirection();
+  }
+
 }
