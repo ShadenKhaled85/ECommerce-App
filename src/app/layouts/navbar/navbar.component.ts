@@ -1,7 +1,7 @@
 import { CartService } from './../../core/services/cart/cart.service';
 import { initFlowbite } from 'flowbite';
 import { FlowbiteService } from './../../core/services/flowbite/flowbite.service';
-import { Component, computed, input, OnInit, Signal, WritableSignal } from '@angular/core';
+import { Component, computed, input, InputSignal, OnInit, Signal, WritableSignal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../core/services/auth/auth.service';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
@@ -23,14 +23,16 @@ export class NavbarComponent implements OnInit{
   ) {}
 
   // @Input() isLoggedIn: boolean = true;
-  isLoggedIn = input<boolean>(true);
+  isLoggedIn : InputSignal<boolean> = input(true);
   isMenuOpen : boolean = false;
   cartCountItems !: Signal<number>;
 
   ngOnInit(): void {
-    this.getCartCountItems();
+    if(localStorage.getItem('myToken')){
+      this.getCartCountItems();
 
-    this.getLoggedUserCart();
+      this.getLoggedUserCart();
+    }
 
     this.flowbiteService.loadFlowbite((flowbite) => {
       initFlowbite();

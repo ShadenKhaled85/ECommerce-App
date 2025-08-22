@@ -6,9 +6,23 @@
       class="w-full max-w-sm rounded-lg shadow-md border border-blue-100" />
   </div>
 
-  <div class="space-y-4">
-    <h2 class="text-3xl font-bold text-blue-800">{{productDetails.title}}</h2>
-    <p class="text-2xl font-semibold text-blue-600">${{productDetails.price!}}</p>
+  <div class="space-y-8 py-12">
+    <div class="flex justify-between ">
+      <h2 class="text-3xl font-bold text-blue-800">{{ productDetails.title }}</h2>
+      <div class="flex items-center g-8">
+        <div class="me-4">
+          <i class="fas fa-star text-yellow-400"></i>
+          <span class="text-gray-500">{{ productDetails.ratingsAverage }}</span>
+        </div>
+        <!-- ? Wishlist Icon -->
+        <div>
+          <i (click)="addProductToWishlist(productDetails._id)"
+            class=" fas fa-heart cursor-pointer text-gray-400 text-xl hover:text-red-500 hover:scale-110 transition"></i>
+        </div>
+      </div>
+    </div>
+
+    <p class="text-2xl font-semibold text-blue-600">{{productDetails.price!}} EGP</p>
     <span class="inline-block bg-blue-100 text-blue-700 text-sm font-medium px-3 py-1 rounded-full">
       {{productDetails.category.name}}
     </span>
@@ -18,9 +32,9 @@
 
 
     <!-- ? Add to Cart Button -->
-    <div class="p-5 pt-0" (click)="addProductToCart(productDetails._id)">
+    <div class="pt-0" (click)="addProductToCart(productDetails._id)">
       <button
-        class="cursor-pointer w-full py-2 rounded-xl bg-blue-600 text-white font-semibold shadow-md transition-colors duration-300 ease-in-out hover:bg-blue-700 hover:shadow-lg">
+        class="w-full py-3 rounded-xl bg-blue-600 text-white font-semibold shadow-md transition-all duration-300 ease-in-out hover:bg-blue-700 hover:shadow-lg hover:scale-[1.02]">
         Add to Cart
       </button>
     </div>

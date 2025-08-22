@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, signal, WritableSignal } from '@angular/core';
+import { effect, Injectable, signal, WritableSignal } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from '../../environment/environment';
 
@@ -8,7 +8,13 @@ import { environment } from '../../environment/environment';
 })
 export class CartService {
 
-  constructor( private httpClient : HttpClient) { }
+  constructor( private httpClient : HttpClient) {
+    effect (()=>{
+      let cartCountItems = this.cartCountItems();
+      console.log('cartCountItems Changed');
+      localStorage.setItem('myCartItem', cartCountItems.toString())
+    })
+  }
 
   // cartCountItems : number = 0;
   // cartCountItems : BehaviorSubject<number>= new BehaviorSubject(0);

@@ -4,7 +4,7 @@ import { CategoriesService } from '../../core/services/category/categories.servi
 import { ICategory } from '../../shared/interfaces/icategory';
 import { IProduct } from '../../shared/interfaces/iproduct';
 import { ProductsService } from './../../core/services/product/products.service';
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { CurrencyPipe } from '@angular/common';
 import { SearchPipe } from '../../shared/pipes/search/search.pipe';
@@ -27,7 +27,8 @@ export class HomeComponent implements OnInit{
   private readonly wishlistService = inject(WishlistService)
   private readonly toastrService = inject(ToastrService)
 
-  myProducts : IProduct[] = [];
+  // myProducts : IProduct[] = [];
+  myProducts:WritableSignal<IProduct[]> = signal([]);
   myCategories : ICategory[] = [];
 
   searchItem : string = '';
@@ -86,7 +87,8 @@ export class HomeComponent implements OnInit{
     this.productsService.getProducts().subscribe({
       next: (res)=> {
         console.log(res.data);
-        this.myProducts = res.data
+        // this.myProducts = res.data
+        this.myProducts.set(res.data);
       }
     })
   }
@@ -107,7 +109,7 @@ export class HomeComponent implements OnInit{
         this.toastrService.success(res.message, 'Cart', {progressBar:true});
         // this.cartService.cartCountItems.next(res.numOfCartItems);
         this.cartService.cartCountItems.set(res.numOfCartItems);
-        console.log(this.cartService.cartCountItems);
+        console.log(this.cartService.cartCountItems());
       }
     })
   }

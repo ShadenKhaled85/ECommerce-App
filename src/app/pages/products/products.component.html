@@ -10,7 +10,7 @@
         <!-- ? Wishlist Icon -->
         <div class="absolute top-4 right-4 z-10">
           <i (click)="addProductToWishlist(product._id)"
-            class="fas fa-heart text-gray-400 text-xl hover:text-red-500 hover:scale-110 transition"></i>
+            class="fas fa-heart cursor-pointer text-gray-400 text-xl hover:text-red-500 hover:scale-110 transition"></i>
         </div>
         <div [routerLink]="['/details', product._id]">
           <!-- ? Product Image -->
