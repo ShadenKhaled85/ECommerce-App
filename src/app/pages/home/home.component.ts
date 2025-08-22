@@ -21,16 +21,16 @@ import { WishlistService } from '../../core/services/wishlist/wishlist.service';
 })
 export class HomeComponent implements OnInit{
 
-  myProducts : IProduct[] = [];
-  myCategories : ICategory[] = [];
-
-  searchItem : string = '';
-
   private readonly productsService = inject(ProductsService)
   private readonly categoriesService = inject(CategoriesService)
   private readonly cartService = inject(CartService)
   private readonly wishlistService = inject(WishlistService)
   private readonly toastrService = inject(ToastrService)
+
+  myProducts : IProduct[] = [];
+  myCategories : ICategory[] = [];
+
+  searchItem : string = '';
 
   customOptions: OwlOptions = {
     loop: true,
@@ -105,7 +105,8 @@ export class HomeComponent implements OnInit{
       next: (res)=>{
         console.log(res);
         this.toastrService.success(res.message, 'Cart', {progressBar:true});
-        this.cartService.cartCountItems.next(res.numOfCartItems);
+        // this.cartService.cartCountItems.next(res.numOfCartItems);
+        this.cartService.cartCountItems.set(res.numOfCartItems);
         console.log(this.cartService.cartCountItems);
       }
     })

@@ -1,7 +1,7 @@
 import { CartService } from './../../core/services/cart/cart.service';
 import { initFlowbite } from 'flowbite';
 import { FlowbiteService } from './../../core/services/flowbite/flowbite.service';
-import { Component, input, OnInit } from '@angular/core';
+import { Component, computed, input, OnInit, Signal, WritableSignal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../core/services/auth/auth.service';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
@@ -24,9 +24,8 @@ export class NavbarComponent implements OnInit{
 
   // @Input() isLoggedIn: boolean = true;
   isLoggedIn = input<boolean>(true);
-  isMenuOpen : boolean = false
-  cartCountItems : number = 0;
-  currentLange : string = '';
+  isMenuOpen : boolean = false;
+  cartCountItems !: Signal<number>;
 
   ngOnInit(): void {
     this.getCartCountItems();
@@ -38,7 +37,7 @@ export class NavbarComponent implements OnInit{
     });
   }
 
-  getCartCountItems(){
+  /*getCartCountItems(){
     // this.cartCountItems = this.cartService.cartCountItems;
     this.cartService.cartCountItems.subscribe({
           next:(value)=>{
@@ -47,12 +46,18 @@ export class NavbarComponent implements OnInit{
           }
         })
   }
+*/
+
+  getCartCountItems(){
+    this.cartCountItems = computed( ()=> this.cartService.cartCountItems());
+  }
 
   getLoggedUserCart(){
     this.cartService.getLoggedUserCart().subscribe({
       next:(res)=>{
         console.log(res);
-        this.cartService.cartCountItems.next(res.numOfCartItems);
+        // this.cartService.cartCountItems.next(res.numOfCartItems);
+        this.cartService.cartCountItems.set(res.numOfCartItems);
       },
       error:(err)=>{
         console.log(err);

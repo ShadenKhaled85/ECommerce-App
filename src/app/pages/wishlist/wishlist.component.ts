@@ -39,6 +39,7 @@ export class WishlistComponent implements OnInit {
       next: (res)=>{
         console.log(res);
         this.toastrService.success(res.message, 'Cart', {progressBar:true});
+        this.cartService.cartCountItems.set(res.numOfCartItems);
         this.removeProductFromWishlist(productId);
       }
     })
