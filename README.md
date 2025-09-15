@@ -27,9 +27,6 @@ The project was built from scratch and applies a wide range of Angular concepts 
 - **Payments**
   - 💳 Integrated Visa payments using Stripe API
 
-- **Payments**
-  - 💳 Integrated Visa payments using Stripe API
-
 - **UI & Navigation**
   - Two different layouts with a shared Navbar:
     - **Before Login** → shows Register and Login options
