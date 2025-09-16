@@ -7,7 +7,7 @@ import { loggedGuard } from './core/guards/logged/logged.guard';
 export const routes: Routes = [
   {path:'' , redirectTo: 'home', pathMatch: 'full'},
 
-  {path:'', component: BlankComponent, canActivate: [authGuard], title: 'Blank', children: [ // We removed 'blank' from path
+  {path:'', component: BlankComponent, canActivate: [authGuard], children: [
     {path: 'home', loadComponent: ()=> import('./pages/home/home.component').then( (comp => comp.HomeComponent)) , title: 'Home'},
     {path: 'cart', loadComponent: ()=> import('./pages/cart/cart.component').then( (comp => comp.CartComponent)) , title: 'Cart'},
     {path: 'products', loadComponent: ()=> import('./pages/products/products.component').then( (comp => comp.ProductsComponent)) , title: 'Products'},
@@ -20,7 +20,7 @@ export const routes: Routes = [
     {path: 'categoryDetails/:catId', loadComponent: ()=> import('./pages/category-details/category-details.component').then( (comp => comp.CategoryDetailsComponent)) , title: 'Category products'},
   ]},
 
-  {path:'', component: AuthComponent, canActivate: [loggedGuard], title: 'Auth', children: [
+  {path:'', component: AuthComponent, canActivate: [loggedGuard], children: [
     {path: 'login', loadComponent: ()=> import('./pages/login/login.component').then( (comp) => comp.LoginComponent ), title: 'Login'},
     {path: 'register', loadComponent: ()=> import('./pages/register/register.component').then( (comp) => comp.RegisterComponent ), title: 'Register'},
     {path: 'forgotPass', loadComponent: ()=> import('./shared/components/ui/forgot-password/forgot-password.component').then( (comp) => comp.ForgotPasswordComponent ), title: 'Forgot Password'},
